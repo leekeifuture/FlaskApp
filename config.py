@@ -1,5 +1,6 @@
 class Configuration(object):
     DEBUG = True # debug mode
+    USE_RELOADER = True # automatic reloader
     SECRET_KEY = 'secret key' # something very secret
     SECURITY_PASSWORD_SALT = 'salt' # security password salt
     SECURITY_PASSWORD_HASH = 'sha512_crypt' # password encryption method
