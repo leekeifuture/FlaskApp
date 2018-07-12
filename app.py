@@ -12,7 +12,7 @@ from flask_migrate import Migrate, MigrateCommand
 from flask_security import SQLAlchemyUserDatastore
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 app.config.from_object(Configuration)
 
 db = SQLAlchemy(app)
