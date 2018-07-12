@@ -1,3 +1,45 @@
-.navbar{
+.navbar {
     border-radius: 0;
+    border-color: #9f2d20;
+    background-color: #9f2d20;
+}
+
+.text-center {
+    text-align: center!important
+}
+
+.bg-gray-light {
+    background-color: #fafafa!important
+}
+
+.bg-gray-light {
+    background: #f5f5f5!important
+}
+
+.overflow-hidden {
+    overflow: hidden!important
+}
+
+.hero-img {
+    margin: 0 auto 0 50%;
+    max-width: 800px;
+    transform: translateX(-50%)
+}
+  
+@media (min-width: 768px) {
+    .hero-img {
+        transform: translateX(0)!important;
+        min-width: none;
+        margin-left: 0!important;
+        max-width: 97.2%
+    }
+
+}
+
+img {
+    border-style: none
+}
+
+img {
+    vertical-align: middle
 }
