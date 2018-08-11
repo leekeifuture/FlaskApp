@@ -27,17 +27,14 @@ from models import *
 
 class AdminMixin:
 
-
     def is_accessible(self):
         return current_user.has_role('admin')
-
 
     def inaccessible_callback(self, name, **kwargs):
         return redirect(url_for('security.login', next=request.url))
 
 
 class BaseModelView(ModelView):
-
 
     def on_model_change(self, form, model, is_created):
         model.generate_slug()

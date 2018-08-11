@@ -5,22 +5,22 @@ from flask_security import UserMixin, RoleMixin
 
 
 post_tags = db.Table('post_tags',
-                      db.Column('post_id',
-                      db.Integer,
-                      db.ForeignKey('post.id')),
-                      db.Column('tag_id',
-                      db.Integer,
-                      db.ForeignKey('tag.id'))
-                    )
+                     db.Column('post_id',
+                               db.Integer,
+                               db.ForeignKey('post.id')),
+                     db.Column('tag_id',
+                               db.Integer,
+                               db.ForeignKey('tag.id'))
+                     )
 
 roles_users = db.Table('roles_users',
-                        db.Column('user_id',
-                        db.Integer,
-                        db.ForeignKey('user.id')),
-                        db.Column('role_id',
-                        db.Integer,
-                        db.ForeignKey('role.id'))
-                      )
+                       db.Column('user_id',
+                                 db.Integer,
+                                 db.ForeignKey('user.id')),
+                       db.Column('role_id',
+                                 db.Integer,
+                                 db.ForeignKey('role.id'))
+                       )
 
 
 def slugify(s):
@@ -35,19 +35,16 @@ class Post(db.Model):
     body = db.Column(db.Text)
     created = db.Column(db.DateTime, default=datetime.now())
     tags = db.relationship('Tag',
-                            secondary=post_tags,
-                            backref=db.backref('posts', lazy='dynamic'))
-
+                           secondary=post_tags,
+                           backref=db.backref('posts', lazy='dynamic'))
 
     def __init__(self, *args, **kwargs):
         super(Post, self).__init__(*args, **kwargs)
         self.generate_slug()
 
-
     def generate_slug(self):
         if self.title:
             self.slug = slugify(self.title)
-
 
     def __repr__(self):
         return '{}'.format(self.title)
@@ -58,16 +55,13 @@ class Tag(db.Model):
     name = db.Column(db.String(100))
     slug = db.Column(db.String(100), unique=True)
 
-
     def __init__(self, *args, **kwargs):
         super(Tag, self).__init__(*args, **kwargs)
         self.generate_slug()
 
-
     def generate_slug(self):
         if self.name:
             self.slug = slugify(self.name)
-
 
     def __repr__(self):
         return '{}'.format(self.name)
@@ -79,8 +73,8 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(255))
     active = db.Column(db.Boolean())
     roles = db.relationship('Role',
-                             secondary=roles_users,
-                             backref=db.backref('users', lazy='dynamic'))
+                            secondary=roles_users,
+                            backref=db.backref('users', lazy='dynamic'))
 
 
 class Role(db.Model, RoleMixin):
